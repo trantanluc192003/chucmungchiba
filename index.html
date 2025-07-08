@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>gửi chị 3</title>
+  <title>Chúc mừng tốt nghiệp</title>
   <style>
     * {
       margin: 0;
@@ -55,6 +55,7 @@
       background-color: #fff0f5;
       opacity: 0;
       z-index: -1;
+      flex-direction: column;
     }
 
     #chi3Img {
@@ -62,23 +63,24 @@
       height: 700px;
       object-fit: cover;
       position: relative;
+      transform: translateY(100vh);
+      opacity: 0;
       animation: moveUp 2s ease forwards;
+      animation-delay: 0.5s;
     }
 
     #message {
-      margin-top: 20px;
-      font-size: 24px;
+      margin-top: 30px;
+      font-size: 26px;
       color: #cc3366;
       opacity: 0;
-      animation: fadeIn 2s ease 2s forwards;
+      animation: fadeIn 2s ease 2.5s forwards;
     }
 
     @keyframes moveUp {
-      from {
-        transform: translateY(100%);
-      }
       to {
         transform: translateY(0);
+        opacity: 1;
       }
     }
 
@@ -100,7 +102,7 @@
   <div id="secondScreen">
     <audio id="bgMusic" src="totnghiep.mp3"></audio>
     <img src="chi3.jpg" alt="Chị 3" id="chi3Img">
-    <div id="message">Chúc mừng chị 3 tốt nghiệp nha, xin vía xin vía nhé !</div>
+    <div id="message">Chúc mừng chị 3 tốt nghiệp nha, xin vía xin vía</div>
   </div>
 
   <script>
@@ -121,6 +123,7 @@
         start.style.display = 'none';
         second.style.zIndex = '1';
         second.style.opacity = '1';
+        music.volume = 0.3;
         music.play();
       }, 1000);
     });
