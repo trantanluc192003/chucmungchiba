@@ -89,6 +89,26 @@
         opacity: 1;
       }
     }
+
+    .firework {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      animation: fly 3s linear forwards;
+      z-index: 1000;
+    }
+
+    @keyframes fly {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) scale(1.5);
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,14 +130,14 @@
     const start = document.getElementById('startScreen');
     const second = document.getElementById('secondScreen');
     const music = document.getElementById('bgMusic');
+    const message = document.getElementById('message');
 
     // Hiện nút sau 2 giây
     setTimeout(() => {
       btn.style.display = 'block';
-    }, 500);
+    }, 2000);
 
     btn.addEventListener('click', () => {
-      // Ẩn màn hình đầu và hiện màn hình thứ 2
       start.style.opacity = '0';
       setTimeout(() => {
         start.style.display = 'none';
@@ -127,6 +147,26 @@
         music.play();
       }, 1000);
     });
+
+    // Tạo hiệu ứng pháo hoa sau khi dòng chúc hiện
+    message.addEventListener('animationend', () => {
+      launchFireworks();
+      setInterval(launchFireworks, 800);
+    });
+
+    function launchFireworks() {
+      for (let i = 0; i < 5; i++) {
+        const fw = document.createElement('img');
+        fw.src = 'phaohoa.png';
+        fw.className = 'firework';
+        fw.style.left = Math.random() * window.innerWidth + 'px';
+        fw.style.top = (Math.random() * window.innerHeight * 0.5 + window.innerHeight * 0.3) + 'px';
+        fw.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(fw);
+
+        setTimeout(() => fw.remove(), 3000);
+      }
+    }
   </script>
 </body>
 </html>
