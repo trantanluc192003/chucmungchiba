@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc mừng tốt nghiệp</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    body {
+      background-color: #d0f0ff;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #startScreen, #secondScreen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease;
+    }
+
+    #totnghiepImg {
+      width: 600px;
+      height: 750px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    #actionButton {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: fadeIn 1s ease forwards;
+      display: none;
+    }
+
+    #secondScreen {
+      background-color: #fff0f5;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    #chi3Img {
+      width: 600px;
+      height: 700px;
+      object-fit: cover;
+      position: relative;
+      animation: moveUp 2s ease forwards;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #cc3366;
+      opacity: 0;
+      animation: fadeIn 2s ease 2s forwards;
+    }
+
+    @keyframes moveUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Màn hình đầu -->
+  <div id="startScreen">
+    <img src="totnghiep.jpg" alt="Tốt nghiệp" id="totnghiepImg">
+    <button id="actionButton">Ấn vào đây nè chị !</button>
+  </div>
+
+  <!-- Màn hình thứ hai -->
+  <div id="secondScreen">
+    <audio id="bgMusic" src="totnghiep.mp3"></audio>
+    <img src="chi3.jpg" alt="Chị 3" id="chi3Img">
+    <div id="message">Chúc mừng chị 3 tốt nghiệp nha, xin vía xin vía</div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('actionButton');
+    const start = document.getElementById('startScreen');
+    const second = document.getElementById('secondScreen');
+    const music = document.getElementById('bgMusic');
+
+    // Hiện nút sau 2 giây
+    setTimeout(() => {
+      btn.style.display = 'block';
+    }, 2000);
+
+    btn.addEventListener('click', () => {
+      // Ẩn màn hình đầu và hiện màn hình thứ 2
+      start.style.opacity = '0';
+      setTimeout(() => {
+        start.style.display = 'none';
+        second.style.zIndex = '1';
+        second.style.opacity = '1';
+        music.play();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
